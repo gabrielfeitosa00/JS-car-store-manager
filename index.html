@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car App</title>
+</head>
+<style>
+    table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+    label{
+    display: inline-block;
+    width: 75px;
+    }
+
+
+</style>
+<body>
+    <header>
+       <h1>
+        <span data-js="companyName"></span>
+        <span data-js="companyPhone"></span>
+       </h1>
+    </header>
+
+    <form data-js="carForm">
+        <label for="">Imagem:</label>
+        <input type="text" data-js="imagem"> <br> <br>
+
+        <label for="">Modelo:</label>
+        <input type="text" data-js="modelo"> <br> <br>
+        <label for="">Ano:</label>
+        <input type="text" data-js="ano"> <br> <br>
+        <label for="">Placa:</label>
+        <input type="text" data-js="placa"> <br> <br>
+        <label for="">Cor:</label>
+        <input type="text" data-js="cor"> <br> <br>
+        <button type="submit">Cadastrar</button> <br> <br>
+    </form>
+    
+    <table data-js="carTable">
+        <tr>
+            <th>Imagem</th>
+            <th>Modelo</th>
+            <th>Ano</th>
+            <th>Placa</th>
+            <th>Cor</th>
+        </tr>
+    </table>
+    <script src="dom.js"></script>
+    <script src="29-javascript-gabriel-feitosa.js"></script>
+</body>
+</html>
