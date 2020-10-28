@@ -64,12 +64,20 @@
         initEvents: function initEvents () {
           var $carForm = DOM("[data-js=carForm]");
           $carForm.on("submit", this.handleSubmit);
+
         },
   
         handleSubmit: function handleSubmit(event) {
           event.preventDefault();
           var $carTable = DOM("[data-js=carTable]");
           $carTable.get().appendChild(app.newCar());
+        },
+
+        handleDelete: function handleDelete(event){
+          event.preventDefault()
+          var $deletedRow = this.parentNode.parentNode
+          var $table = $deletedRow.parentNode
+          $table.removeChild($deletedRow)
         },
   
         newCar: function newCar() {
@@ -81,6 +89,13 @@
           var $anoCell = doc.createElement("td");
           var $placaCell = doc.createElement("td");
           var $corCell = doc.createElement("td");
+          var $deleteCell = doc.createElement("td")
+
+          var $deleteButton = doc.createElement("button")
+          $deleteButton.innerHTML = "Deletar"
+          $deleteButton.addEventListener('click',this.handleDelete, false)
+          $deleteCell.appendChild($deleteButton)
+
           $imagem.src = DOM("[data-js=imagem]").get().value;
           $imagemCell.appendChild($imagem)
           $modeloCell.textContent = DOM("[data-js=modelo]").get().value;
@@ -93,6 +108,7 @@
           $newRow.appendChild($anoCell);
           $newRow.appendChild($placaCell);
           $newRow.appendChild($corCell);
+          $newRow.appendChild($deleteCell)
   
           return $fragment.appendChild($newRow);
         },
