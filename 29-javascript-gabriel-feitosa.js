@@ -76,12 +76,13 @@
           var $fragment = doc.createDocumentFragment();
           var $newRow = doc.createElement("tr");
           var $imagemCell = doc.createElement("td");
+          var $imagem = doc.createElement("img")
           var $modeloCell = doc.createElement("td");
           var $anoCell = doc.createElement("td");
           var $placaCell = doc.createElement("td");
           var $corCell = doc.createElement("td");
-  
-          $imagemCell.textContent = DOM("[data-js=imagem]").get().value;
+          $imagem.src = DOM("[data-js=imagem]").get().value;
+          $imagemCell.appendChild($imagem)
           $modeloCell.textContent = DOM("[data-js=modelo]").get().value;
           $anoCell.textContent = DOM("[data-js=ano]").get().value;
           $placaCell.textContent = DOM("[data-js=placa]").get().value;
