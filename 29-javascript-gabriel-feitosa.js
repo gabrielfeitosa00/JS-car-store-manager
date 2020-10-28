@@ -32,17 +32,17 @@
     */
 
     var ajax = new XMLHttpRequest()
-    var $companyName= new DOM('[data-js=companyName]')
-    var $companyPhone= new DOM('[data-js=companyPhone]')
-    var $carForm = new DOM('[data-js=carForm]')
+    var $companyName=  DOM('[data-js=companyName]')
+    var $companyPhone=  DOM('[data-js=companyPhone]')
+    var $carForm =  DOM('[data-js=carForm]')
 
     $carForm.on('submit', handleSubmit)
 
     function handleSubmit(event){
         event.preventDefault()
-        var $carTable = new DOM('[data-js=carTable]')
+        var $carTable = DOM('[data-js=carTable]')
         console.log($carTable)
-        $carTable.get()[0].appendChild(newCar())
+        $carTable.get().appendChild(newCar())
     }
 
     function newCar(){
@@ -54,11 +54,11 @@
         var $placaCell = doc.createElement('td')
         var $corCell = doc.createElement('td')
 
-        $imagemCell.textContent = new DOM('[data-js=imagem]').get()[0].value
-        $modeloCell.textContent = new DOM('[data-js=modelo]').get()[0].value
-        $anoCell.textContent = new DOM('[data-js=ano]').get()[0].value
-        $placaCell.textContent = new DOM('[data-js=placa]').get()[0].value
-        $corCell.textContent = new DOM('[data-js=cor]').get()[0].value
+        $imagemCell.textContent =  DOM('[data-js=imagem]').get().value
+        $modeloCell.textContent =  DOM('[data-js=modelo]').get().value
+        $anoCell.textContent =  DOM('[data-js=ano]').get().value
+        $placaCell.textContent =  DOM('[data-js=placa]').get().value
+        $corCell.textContent = DOM('[data-js=cor]').get().value
 
         $newRow.appendChild($imagemCell)
         $newRow.appendChild($modeloCell)
@@ -77,16 +77,14 @@
 
     function setCompanyData(){
         var parsedData = JSON.parse(ajax.responseText)
-        $companyName.get()[0].textContent = parsedData.name
-        $companyPhone.get()[0].textContent = parsedData.phone 
+        $companyName.get().textContent = parsedData.name
+        $companyPhone.get().textContent = parsedData.phone 
     }
 
     getCompanyData()
 
     function handleReadyEventChange(){
         if(isRequestOk() ) {
-          console.log(ajax.responseText)
-          console.log(ajax.status)
           setCompanyData()
         }
         
