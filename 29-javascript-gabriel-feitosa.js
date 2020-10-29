@@ -63,7 +63,7 @@
 
       getCarDataFromServer: function getCarDataFromServer() {
         var ajaxGetCar = new XMLHttpRequest();
-        console.log('chegou')
+  
         ajaxGetCar.open("GET", "http://localhost:3000/car");
         ajaxGetCar.send();
         ajaxGetCar.addEventListener("readystatechange", this.fetchCarData,false);
@@ -72,7 +72,7 @@
       fetchCarData: function fetchCarData() {
         if (app.isRequestOk.call(this)) {
           var allCars = JSON.parse(this.responseText);
-          console.log(allCars)
+          
           allCars.forEach((car) => {
             app.addCarToTable(
               car.image,
@@ -102,6 +102,16 @@
         ajaxPostCar.send(`image=${image}&brandModel=${brandModel}&year=${year}&plate=${plate}&color=${color}`);
       },
 
+      removeCarData: function removeCarData(plate){
+        var ajaxDeleteCar = new XMLHttpRequest()
+        ajaxDeleteCar.open("DELETE", "http://localhost:3000/car");
+        ajaxDeleteCar.setRequestHeader(
+          "Content-Type",
+          "application/x-www-form-urlencoded"
+        );
+        ajaxDeleteCar.send(`plate=${plate}`)
+      },
+
       initEvents: function initEvents() {
         var $carForm = DOM("[data-js=carForm]");
         $carForm.on("submit", this.handleSubmit);
@@ -116,7 +126,9 @@
       handleDelete: function handleDelete(event) {
         event.preventDefault();
         var $deletedRow = this.parentNode.parentNode;
+        var $deletedPlate = $deletedRow.children[3].textContent
         var $table = $deletedRow.parentNode;
+        app.removeCarData($deletedPlate)
         $table.removeChild($deletedRow);
       },
 
